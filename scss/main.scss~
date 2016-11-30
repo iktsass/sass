@@ -4,8 +4,8 @@ $badass: #e9faff;
 $p-15:15px;
 $pr-15:15px;
 $mr-15:-15px;
-
-.menu-sty {
+.niyaz{color:black;}
+.menu-sty a{
 color:#F44336;
 text-transform:uppercase;
 font-weight:bold;

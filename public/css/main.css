@@ -43,7 +43,10 @@ ol {
   .visible-ph {
     display: none; } }
 
-.menu-sty, .logo, nav a {
+.niyaz {
+  color: black; }
+
+.menu-sty a, .logo a, nav a a {
   color: #F44336;
   text-transform: uppercase;
   font-weight: bold; }
