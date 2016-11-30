@@ -57,7 +57,7 @@ ol {
 body {
   margin: 0;
   background-color: #e9faff;
-  font-size: 10px;
+  font-size: 15px;
   line-height: 1.42857143; }
 
 /*------- Mobile Menu icon----*/
@@ -166,7 +166,7 @@ section:nth-of-type(6) .column:nth-of-type(2) {
   flex-basis: 66px; }
 
 .column {
-  padding: 10px 0;
+  padding: 10px 5px;
   background-color: #000;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.75);
