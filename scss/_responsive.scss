@@ -1,0 +1,28 @@
+$phone: "only screen and (max-width : 767px)";
+$tab-port: "only screen and (min-width:768px) and (max-width : 991px)";
+$desktop: "only screen and (min-width : 992px)";
+
+@media #{$phone} {
+section {display: block !important;}
+.mob_div{float:right;cursor:pointer;	}
+nav {display: inline-block;margin: 30px 0 0 0;}
+nav li {display: block !important;text-align: left;}
+nav ul {text-align: left;}
+nav a {padding: 20px 0px 20px 0px !important;}
+.visible-ph{display:block !important;}
+.hide-ph{display:none;}
+.container {margin-right: 15px !important;margin-left: 15px !important;}
+}
+@media #{$desktop}{
+.container {
+    width: 750px;
+}
+.visible-ph{display:none;}
+}
+@media #{$tab-port} {
+.container {
+	margin-right: 15px !important;
+	margin-left: 15px !important;
+}
+.visible-ph{display:none;}
+}

@@ -1,0 +1,326 @@
+@import 'reset';
+$badass: #e9faff;
+$p-15:15px;
+$pr-15:15px;
+$mr-15:-15px;
+
+.menu-sty {
+color:#F44336;
+text-transform:uppercase;
+font-weight:bold;
+}
+
+body { 
+  margin: 0; 
+  background-color: $badass; 
+  font-size: 14px;
+  line-height: 1.42857143;
+}
+/*--------- Nesting-------*/
+.logo{
+    padding: 20px 0;
+    position: absolute;
+    @extend .menu-sty;
+}
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: right;
+  }
+
+  li { display: inline-block; }
+
+  a {
+    display: block;
+    padding: 20px 0px 20px 20px;
+    text-decoration: none;
+     @extend .menu-sty;
+  }
+}
+/*--------- Nesting-------*/
+/*--------- Mixins-------*/
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+.box { @include border-radius(10px); }
+/*--------- Mixins-------*/
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.copy p{
+	text-align: center;
+    font-style: italic;
+    color:#c90c12;
+    }
+h1{color: $badass;}
+
+.container{
+padding-left:$p-15;
+padding-right:$p-15;
+margin-right: auto;
+margin-left: auto;
+}
+
+.row {
+    margin-right:$mr-15;
+    margin-left: $mr-15;
+}
+.col-lg-12,.col-md-12,.col-sm-12, .col-xs-12 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/*----------------------- Grid Layout----------*/
+
+section {
+  margin: 0 auto;
+  display: flex;
+}
+
+.column {
+      margin: 10px 10px 10px 0px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+}
+
+section:nth-of-type(5) .column:first-of-type {
+  flex-grow: 2;
+  flex-shrink: 2;
+  flex-basis: 22px;
+}
+
+section:nth-of-type(6) .column:nth-of-type(2) {
+  flex-grow: 4;
+  flex-shrink: 4;
+  flex-basis: 66px;
+}
+
+.column {
+  padding: 10px 0;
+  background-color: #000;
+  text-align: center;
+  border: 1px solid transparentize(white, 0.25);
+  color: transparentize(white, 0.1);
+}
+
+/*----------------------- Grid Layout----------*/
+/*----------------------- Input field Layout----------*/
+
+
+// Placeholder Mixin
+// ====================================
+
+$pseudo-placeholder: "::-webkit-input-placeholder" "::-moz-placeholder" ":-ms-input-placeholder" "::placeholder";
+
+@mixin placeholder {
+  @each $pseudo in $pseudo-placeholder {
+    @at-root #{&}#{$pseudo} {
+      @content
+    }
+  }
+}
+
+
+// Theme Config
+// ====================================
+
+$slabel-theme: (
+  border: 0,
+  radius: 4px,
+  padding: 10px 15px,
+  font: 'Open Sans',
+  bg: #fad6d6,
+  label-bg: #fad6d6,
+  label-color: inherit,
+  error-color: #E82C0C,
+  placeholder-color: #ffbebe,
+  success-color: #5C832F
+);
+
+@function slabel($key) {
+  @return map-get($slabel-theme, $key);
+}
+
+
+// Required Styles
+// ====================================
+
+.slabel {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  margin: 25px 0;
+  font-family: slabel(font);
+}
+
+.slabel input {
+  appearance: none;
+  border: slabel(border);
+  border-radius: slabel(radius) - 1;
+  box-sizing: border-box;
+  display: inline-block;
+  outline: 0;
+  padding: slabel(padding);
+  transition: transform 225ms ease-in-out;
+  width: 100%;
+  background: slabel(bg);
+
+  &:empty:valid + label {
+    color: slabel(success-color) !important;
+  }
+
+  &:valid + label {
+    color: slabel(success-color) !important;
+  }
+
+  &:invalid {
+    background: slabel(error-color);
+    color: white;
+  }
+
+  &:invalid + label {
+    &:after { background: slabel(error-color); }
+    color: white;
+  }
+
+  @include placeholder { color: slabel(placeholder-color); }
+
+  + label {
+    border: slabel(border);
+    border-radius: slabel(radius);
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: slabel(padding);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(0);
+    transition: transform 225ms ease-in-out;
+    width: 100%;
+    color: slabel(label-color);
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      right: 0;
+      left: 0;
+      z-index: -1;
+      transition: transform 225ms ease-in-out;
+    }
+
+    &:before { transform: translateY(-100%); }
+
+    &:after {
+      border-radius: slabel(radius);
+      top: 0;
+      bottom: 0;
+      background: slabel(label-bg);
+    }
+  }
+}
+
+.slabel input:focus {
+  &:empty:valid + label {
+    color: slabel(success-color) !important;
+  }
+
+  &:invalid + label {
+    color: slabel(error-color);
+  }
+
+  + label {
+    border: slabel(border);
+    transform: translateY(-100%);
+
+    &:after {
+      transform: translateY(100%);
+    }
+  }
+}
+/*----------------------- Input field Layout----------*/
+/*----------------------- ACCORDION TAB----------*/
+
+
+$primaryRed: #9E9E9E;
+$lightGrey: #dbdbdb;
+
+/*----------- Mixins --------------*/
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+/*--------- Accordion ------------- */
+.accordion {
+  >ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+    li {
+      .accordionTitle {
+        font-family: "Exo 2";
+        font-size:28px;
+        text-align:center;
+        background: $primaryRed;
+        padding:30px;
+        color: $lightGrey;
+        margin:0;
+        border-bottom:solid 2px darken($primaryRed, 10%);
+        &:after {
+          content:"+";
+          float:right;
+          @include transition(all, 0.46s, ease-in-out);
+        }
+        &.active:after {
+          -webkit-transform: rotate(45deg);
+          -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          -o-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      }
+    }
+    li:last-child {
+      border-bottom:solid 5px darken($primaryRed, 10%);
+    }
+    li:hover {
+      cursor:pointer;
+      border-bottom:solid 3px darken($primaryRed, 10%);
+    }
+    .accordionItemContent {
+      display:none;
+      background:$lightGrey;
+      padding:20px;
+      &.active {
+        display:block;
+      }
+    }
+  }
+}
+/*----------------------- ACCORDION TAB----------*/
+
+
+
