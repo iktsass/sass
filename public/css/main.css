@@ -44,7 +44,7 @@ ol {
     display: none; } }
 
 .niyaz {
-  color: black; }
+  color: red; }
 
 .menu-sty a, .logo a, nav a a {
   color: #F44336;
@@ -54,7 +54,7 @@ ol {
 body {
   margin: 0;
   background-color: #e9faff;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.42857143; }
 
 /*------- Mobile Menu icon----*/

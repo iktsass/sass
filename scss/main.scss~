@@ -4,7 +4,7 @@ $badass: #e9faff;
 $p-15:15px;
 $pr-15:15px;
 $mr-15:-15px;
-.niyaz{color:black;}
+.niyaz{color:red;}
 .menu-sty a{
 color:#F44336;
 text-transform:uppercase;
